@@ -25,7 +25,7 @@ function add_player() {
         var raise_val = document.getElementById("raise" + number_of_players).value;
         document.getElementById("money" + number_of_players).innerHTML -= raise_val;
         document.getElementById("bet" + number_of_players).innerHTML -= -raise_val;
-        document.getElementById("raise" + number_of_players).value = 0;
+        document.getElementById("raise" + number_of_players).value = null;
     }
     raise.appendChild(input_box);
     raise.appendChild(raise_button);

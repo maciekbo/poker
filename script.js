@@ -1,4 +1,6 @@
 var number_of_players = 0;
+var pot = 0;
+
 function add_player() {
     number_of_players++;
     const name = document.createElement("td");
@@ -27,6 +29,8 @@ function add_player() {
         document.getElementById("money" + raise_button.id).innerHTML -= raise_val;
         document.getElementById("bet" + raise_button.id).innerHTML -= -raise_val;
         document.getElementById("raise" + raise_button.id).value = null;
+        pot -= -raise_val;
+        document.getElementById("pot").innerHTML = "The current pot is " + pot + ".";
     }
     raise.appendChild(input_box);
     raise.appendChild(raise_button);

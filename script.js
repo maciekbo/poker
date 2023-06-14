@@ -21,11 +21,12 @@ function add_player() {
     input_box.id = "raise" + number_of_players;
     const raise_button = document.createElement("button");
     raise_button.innerHTML = "raise";
+    raise_button.id = number_of_players;
     raise_button.onclick = function() {
-        var raise_val = document.getElementById("raise" + number_of_players).value;
-        document.getElementById("money" + number_of_players).innerHTML -= raise_val;
-        document.getElementById("bet" + number_of_players).innerHTML -= -raise_val;
-        document.getElementById("raise" + number_of_players).value = null;
+        var raise_val = document.getElementById("raise" + raise_button.id).value;
+        document.getElementById("money" + raise_button.id).innerHTML -= raise_val;
+        document.getElementById("bet" + raise_button.id).innerHTML -= -raise_val;
+        document.getElementById("raise" + raise_button.id).value = null;
     }
     raise.appendChild(input_box);
     raise.appendChild(raise_button);

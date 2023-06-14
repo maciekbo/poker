@@ -23,12 +23,12 @@ function add_player() {
     input_box.id = "raise" + number_of_players;
     const raise_button = document.createElement("button");
     raise_button.innerHTML = "raise";
-    raise_button.id = number_of_players;
+    raise_button.class = number_of_players;
     raise_button.onclick = function() {
-        var raise_val = document.getElementById("raise" + raise_button.id).value;
-        document.getElementById("money" + raise_button.id).innerHTML -= raise_val;
-        document.getElementById("bet" + raise_button.id).innerHTML -= -raise_val;
-        document.getElementById("raise" + raise_button.id).value = null;
+        var raise_val = document.getElementById("raise" + raise_button.class).value;
+        document.getElementById("money" + raise_button.class).innerHTML -= raise_val;
+        document.getElementById("bet" + raise_button.class).innerHTML -= -raise_val;
+        document.getElementById("raise" + raise_button.class).value = null;
         pot -= -raise_val;
         document.getElementById("pot").innerHTML = "The current pot is " + pot + ".";
     }
@@ -38,7 +38,18 @@ function add_player() {
 
     const win = document.createElement("td");
     const win_button = document.createElement("button");
+    win_button.class = number_of_players;
     win_button.innerHTML = "win";
+    win_button.onclick = function() {
+        resolve_win(win_button.class);
+    }
     win.appendChild(win_button);
     document.getElementById("win").appendChild(win);
+}
+
+function resolve_win(id) {
+    document.getElementById("money" + id).innerHTML -= -pot;
+    for (var i = 1; i <= number_of_players; i++) {
+        document.getElementById("bet" + i).innerHTML = 0;
+    }
 }
